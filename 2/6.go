@@ -14,14 +14,14 @@ func main() {
 	fmt.Scan(&b)
 	if znak == "+" {
 		fmt.Println(a + b)
-	}
-	if znak == "-" {
+	} else if znak == "-" {
 		fmt.Println(a - b)
-	}
-	if znak == "/" {
+	} else if znak == "/" {
 		fmt.Println(a / b)
-	}
-	if znak == "*" {
+	} else if znak == "*" {
 		fmt.Println(a * b)
+	} else {
+		fmt.Println("неправильный знак")
 	}
+	fmt.Println("выход из программы")
 }
