@@ -37,3 +37,12 @@ git add .
 git commit -m "some message"
 git push
 
+
+condition условия
+
+if условие {
+    действие1
+} else{
+    действие2
+}
+
