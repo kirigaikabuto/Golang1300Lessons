@@ -3,11 +3,13 @@ package main
 import "fmt"
 
 func main() {
+	znak := "-"
 	a := 4
 	b := 4
-	if a > b {
-		fmt.Println("a больше всех")
-	} else {
-		fmt.Println("b больше всех")
+	if znak == "+" {
+		fmt.Println(a + b)
+	}
+	if znak == "-" {
+		fmt.Println(a - b)
 	}
 }
