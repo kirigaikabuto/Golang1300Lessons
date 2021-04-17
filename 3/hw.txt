@@ -1,0 +1,17 @@
+1) почитать и проверить примеры
+http://golang-book.ru/chapter-13-core-packages.html
+до темы Сортировка
+2) С клавиатуры вводятс два числа start,end в виде строк
+var start, end string
+
+2.1) найти сумму всех чисел от start,end
+    3 10
+    3 +4 + 5 +6 +7 +8 +9 + 10 = ...
+2.2) необходимо вывести только четные числа
+    3 10
+    4 6 8 10
+2.3) необходимо вывести сумму нечетных чисел
+    3 10
+    3+5+7+9
+2.4) continue and break?? https://metanit.com/go/tutorial/2.10.php
+2.5) arrays массивы https://metanit.com/go/tutorial/2.8.php
