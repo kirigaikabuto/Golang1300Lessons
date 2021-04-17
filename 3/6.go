@@ -16,13 +16,13 @@ func main() {
 	//евклидово расстояние
 	fmt.Print("r=")
 	fmt.Scan(&r)
-	fmt.Print("cx")
+	fmt.Print("cx=")
 	fmt.Scan(&cX)
-	fmt.Print("cy")
+	fmt.Print("cy=")
 	fmt.Scan(&cY)
-	fmt.Print("x")
+	fmt.Print("x=")
 	fmt.Scan(&x)
-	fmt.Print("y")
+	fmt.Print("y=")
 	fmt.Scan(&y)
 	rInt, err := strconv.Atoi(r)
 	if err != nil {
