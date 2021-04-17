@@ -15,3 +15,5 @@ var start, end string
     3+5+7+9
 2.4) continue and break?? https://metanit.com/go/tutorial/2.10.php
 2.5) arrays массивы https://metanit.com/go/tutorial/2.8.php
+
+https://it-blog.club/articles/gitlab/github-vs-gitlab-kto-luchshe/
