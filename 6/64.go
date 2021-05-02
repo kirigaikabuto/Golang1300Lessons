@@ -24,7 +24,7 @@ func main() {
 	}
 	s := strings.Join(primeNumbers, "")
 	fmt.Println(len(s))
-	arr := []int{2, 5, 6, 8, 12}
+	arr := []int{2, 5, 6, 8, 12,1000}
 	for _, v := range arr {
 		fmt.Print(string(s[v-1]))
 	}
