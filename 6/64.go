@@ -9,7 +9,7 @@ import (
 func main() {
 	//strconv.Itoa-> numbers to string
 	//strconv.Atoi-> string to numbers
-	n := 100
+	n := 2500
 	primeNumbers := []string{}
 	for i := 1; i < n; i++ {
 		counter := 0
