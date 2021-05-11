@@ -1,0 +1,6 @@
+
+	//className->Person  properties -> name,surname,phone
+	//className->Product propeties  -> name,characterestics
+	int, string, bool -> примитивные типы данных
+	объекты -> это более сложные типы данных в которых могут хранится элементы из многих примитивных и таких
+	же сложных типов даных
