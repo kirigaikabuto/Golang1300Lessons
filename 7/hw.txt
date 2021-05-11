@@ -1,0 +1,5 @@
+https://taskcode.ru/matrix/min-id
+https://taskcode.ru/matrix/max-columns
+https://taskcode.ru/matrix/qty
+https://taskcode.ru/matrix/sorting
+https://taskcode.ru/matrix/max-min
