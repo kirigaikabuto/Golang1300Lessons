@@ -1,0 +1,17 @@
+1) посмотреть видео и подготовить вопросы
+2) почитать доп информацию по поинтерам
+3)
+
+Person
+    FirstName:string
+    LastName:string
+    Age:int
+    Marks:[]int
+    Avg:float64
+    YearOfBirth:int
+
+    ShowInfo():string
+    example: FullName:yerassyl_tleugazy,YearOfBirth:1998,Avg:3.4
+
+    setDateOfBirth()
+    setAvg()
