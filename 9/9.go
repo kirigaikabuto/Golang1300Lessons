@@ -12,5 +12,9 @@ func main() {
 		Password: "123212312",
 		Age:      23,
 	}
-	fmt.Println(u1)
+	u1.ShowName()
+	u1.ShowUsernameAndPassword()
+	fmt.Println(u1.YearOfBirth)
+	u1.SetYearOfBirth()
+	fmt.Println(u1.YearOfBirth)
 }
