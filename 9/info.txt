@@ -32,3 +32,9 @@ arr=[1,2,3,4]
 address-> 0x345234
 
 pointer_arr <-0x3453
+
+interface
+шаблон
+AddToDb()
+RemoveFromDb()
+UpdateIndDb()
