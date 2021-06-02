@@ -9,7 +9,7 @@ type AddressModel struct {
 }
 
 func (a *AddressModel) getInfo() string {
-	message := fmt.Sprintf("Disctict:%s,Street:%s,HomeNumber:%s", a.District, a.Street, a.HomeNumber)
+	message := fmt.Sprintf("District:%s,Street:%s,HomeNumber:%s", a.District, a.Street, a.HomeNumber)
 	return message
 }
 
