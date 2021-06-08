@@ -47,6 +47,7 @@ func GetDataByName(collection *mongo.Collection, name string) (*Product, error) 
 
 func UpdateData(collection *mongo.Collection, name string, product Product) error {
 	filter := bson.D{{"name", name}}
+	//collection.DeleteOne(context.TODO(),filter)
 	update := bson.D{
 		{
 			"$set",
@@ -99,13 +100,13 @@ func main() {
 	//	return
 	//}
 	//fmt.Println(pr)
-	err = UpdateData(collection, "132213", Product{
-		Name:  "222222",
-		Price: 2222,
-	})
-	if err != nil {
-		log.Fatal(err)
-		return
-	}
+	//err = UpdateData(collection, "11111", Product{
+	//	Name:  "222222",
+	//	Price: 2222,
+	//})
+	//if err != nil {
+	//	log.Fatal(err)
+	//	return
+	//}
 
 }
