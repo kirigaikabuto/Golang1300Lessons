@@ -1,1 +1,14 @@
 https://www.mongodb.com/try/download/community
+
+
+виртуальная среда
+python -m venv env
+source env/bin/activate
+pip install -r req.txt
+pip install ___
+
+[GOLANG]
+go mod init
+
+[install library]
+go get ссылка_на_библиотеку
