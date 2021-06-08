@@ -12,3 +12,8 @@ go mod init
 
 [install library]
 go get ссылка_на_библиотеку
+
+[mac os]
+https://osxdaily.com/2018/03/07/how-install-homebrew-mac-os/
+brew install mongodb-community@4.4
+
