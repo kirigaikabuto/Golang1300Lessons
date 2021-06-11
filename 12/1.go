@@ -2,21 +2,31 @@ package main
 
 import (
 	"fmt"
+	"github.com/joho/godotenv"
 	"github.com/kirigaikabuto/Golang1300Lessons/12/config"
 	"github.com/kirigaikabuto/Golang1300Lessons/12/products"
 	"log"
+	"os"
 )
 
 func main() {
+	err := godotenv.Overload(".env")
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+	url := os.Getenv("MONGO_URL")
+	database := os.Getenv("MONGO_DB")
+	collection := os.Getenv("MONGO_COLLECTION")
 	//productPostgreStore, err := products.NewPostgreProductStore(config.PostgreConfig{})
 	//if err != nil {
 	//	log.Fatal(err)
 	//	return
 	//}
 	productMongoStore, err := products.NewProductStore(config.MongoConfig{
-		Url:        "mongodb://localhost:27017",
-		Database:   "lesson12",
-		Collection: "products",
+		Url:        url,
+		Database:   database,
+		Collection: collection,
 	})
 	if err != nil {
 		log.Fatal(err)
