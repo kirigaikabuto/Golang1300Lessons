@@ -2,7 +2,6 @@ package products
 
 import (
 	"context"
-	"github.com/google/uuid"
 	"github.com/kirigaikabuto/Golang1300Lessons/12/config"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -33,8 +32,6 @@ func NewProductStore(config config.MongoConfig) (ProductStore, error) {
 }
 
 func (p *productStore) Create(product *Product) (*Product, error) {
-	id := uuid.New()
-	product.Id = id.String()
 	_, err := p.collection.InsertOne(context.TODO(), product)
 	if err != nil {
 		return nil, err

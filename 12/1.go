@@ -8,7 +8,12 @@ import (
 )
 
 func main() {
-	productStore, err := products.NewProductStore(config.MongoConfig{
+	//productPostgreStore, err := products.NewPostgreProductStore(config.PostgreConfig{})
+	//if err != nil {
+	//	log.Fatal(err)
+	//	return
+	//}
+	productMongoStore, err := products.NewProductStore(config.MongoConfig{
 		Url:        "mongodb://localhost:27017",
 		Database:   "lesson12",
 		Collection: "products",
@@ -17,12 +22,27 @@ func main() {
 		log.Fatal(err)
 		return
 	}
-	product, err := productStore.GetById("2c613b4c-79dd-4024-8ad8-3d7b2b2f6566")
+	productService := products.NewProductService(productMongoStore)
 	if err != nil {
 		log.Fatal(err)
 		return
 	}
-	fmt.Println(product)
+	createCmd := &products.CreateProductCommand{
+		Name:  "asdsadas",
+		Price: 123,
+	}
+	newProduct, err := productService.CreateProduct(createCmd)
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+	fmt.Println(newProduct)
+	//product, err := productStore.GetById("2c613b4c-79dd-4024-8ad8-3d7b2b2f6566")
+	//if err != nil {
+	//	log.Fatal(err)
+	//	return
+	//}
+	//fmt.Println(product)
 	//	p := &products.Product{
 	//		Name:  "product2",
 	//		Price: 123,
