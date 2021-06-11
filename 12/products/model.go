@@ -9,4 +9,5 @@ type Product struct {
 type ProductStore interface {
 	Create(product *Product) (*Product, error)
 	List() ([]Product, error)
+	GetById(id string) (*Product, error)
 }

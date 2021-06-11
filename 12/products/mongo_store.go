@@ -55,3 +55,13 @@ func (p *productStore) List() ([]Product, error) {
 	}
 	return products, nil
 }
+
+func (p *productStore) GetById(id string) (*Product, error) {
+	filter := bson.D{{"id", id}}
+	product := &Product{}
+	err := p.collection.FindOne(context.TODO(), filter).Decode(&product)
+	if err != nil {
+		return nil, err
+	}
+	return product, nil
+}

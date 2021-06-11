@@ -17,20 +17,26 @@ func main() {
 		log.Fatal(err)
 		return
 	}
-	p := &products.Product{
-		Name:  "product2",
-		Price: 123,
-	}
-	newProduct, err := productStore.Create(p)
+	product, err := productStore.GetById("2c613b4c-79dd-4024-8ad8-3d7b2b2f6566")
 	if err != nil {
 		log.Fatal(err)
 		return
 	}
-	fmt.Println(newProduct)
-	productsObjects, err := productStore.List()
-	if err != nil {
-		log.Fatal(err)
-		return
-	}
-	fmt.Println(productsObjects)
+	fmt.Println(product)
+	//	p := &products.Product{
+	//		Name:  "product2",
+	//		Price: 123,
+	//	}
+	//	newProduct, err := productStore.Create(p)
+	//	if err != nil {
+	//		log.Fatal(err)
+	//		return
+	//	}
+	//	fmt.Println(newProduct)
+	//	productsObjects, err := productStore.List()
+	//	if err != nil {
+	//		log.Fatal(err)
+	//		return
+	//	}
+	//	fmt.Println(productsObjects)
 }
