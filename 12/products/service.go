@@ -7,6 +7,7 @@ import (
 
 type ProductService interface {
 	CreateProduct(cmd *CreateProductCommand) (*Product, error)
+	GetProductById(cmd *GetProductByIdCommand) (*Product, error)
 }
 
 type productService struct {
@@ -36,4 +37,15 @@ func (p *productService) CreateProduct(cmd *CreateProductCommand) (*Product, err
 		return nil, err
 	}
 	return newProduct, nil
+}
+
+func (p *productService) GetProductById(cmd *GetProductByIdCommand) (*Product, error) {
+	if cmd.Id == "" {
+		return nil, errors.New("please write the id of product")
+	}
+	product, err := p.database.GetById(cmd.Id)
+	if err != nil {
+		return nil, err
+	}
+	return product, nil
 }

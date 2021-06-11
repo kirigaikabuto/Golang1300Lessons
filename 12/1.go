@@ -27,16 +27,23 @@ func main() {
 		log.Fatal(err)
 		return
 	}
-	createCmd := &products.CreateProductCommand{
-		Name:  "asdsadas",
-		Price: 123,
-	}
-	newProduct, err := productService.CreateProduct(createCmd)
+	getByIdCmd := &products.GetProductByIdCommand{Id: "102821a6-90b8-42fb-90d4-ef7c4d0b7002"}
+	product, err := productService.GetProductById(getByIdCmd)
 	if err != nil {
 		log.Fatal(err)
 		return
 	}
-	fmt.Println(newProduct)
+	fmt.Println(product)
+	//createCmd := &products.CreateProductCommand{
+	//	Name:  "asdsadas",
+	//	Price: 123,
+	//}
+	//newProduct, err := productService.CreateProduct(createCmd)
+	//if err != nil {
+	//	log.Fatal(err)
+	//	return
+	//}
+	//fmt.Println(newProduct)
 	//product, err := productStore.GetById("2c613b4c-79dd-4024-8ad8-3d7b2b2f6566")
 	//if err != nil {
 	//	log.Fatal(err)
