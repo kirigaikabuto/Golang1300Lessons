@@ -26,4 +26,10 @@ func main() {
 		return
 	}
 	fmt.Println(newProduct)
+	productsObjects, err := productStore.List()
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+	fmt.Println(productsObjects)
 }

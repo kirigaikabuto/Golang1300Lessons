@@ -3,6 +3,7 @@ package products
 import (
 	"context"
 	"github.com/google/uuid"
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -38,4 +39,18 @@ func (p *ProductStore) Create(product *Product) (*Product, error) {
 		return nil, err
 	}
 	return product, nil
+}
+
+func (p *ProductStore) List() ([]Product, error){
+	filter := bson.D{}
+	products := []Product{}
+	cursor, err := p.collection.Find(context.TODO(), filter)
+	if err != nil {
+		return nil, err
+	}
+	err = cursor.All(context.TODO(), &products)
+	if err != nil {
+		return nil, err
+	}
+	return products, nil
 }
