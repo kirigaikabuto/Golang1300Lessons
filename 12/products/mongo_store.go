@@ -10,14 +10,14 @@ import (
 )
 
 //структура в которой хранятся элементы которые позволяют совершать какие либо операции в бд
-type ProductStore struct {
+type productStore struct {
 	collection *mongo.Collection
 }
 
 //метод который создает (сущность в которой хранятся элементы которые позволяют совершать какие либо операции в бд)
 //а так же подключается к базе данных
 
-func NewProductStore(config config.MongoConfig) (*ProductStore, error) {
+func NewProductStore(config config.MongoConfig) (ProductStore, error) {
 	clientOptions := options.Client().ApplyURI(config.Url)
 	client, err := mongo.Connect(context.TODO(), clientOptions)
 	if err != nil {
@@ -29,10 +29,10 @@ func NewProductStore(config config.MongoConfig) (*ProductStore, error) {
 	}
 	db := client.Database(config.Database)
 	collection := db.Collection(config.Collection)
-	return &ProductStore{collection: collection}, nil
+	return &productStore{collection: collection}, nil
 }
 
-func (p *ProductStore) Create(product *Product) (*Product, error) {
+func (p *productStore) Create(product *Product) (*Product, error) {
 	id := uuid.New()
 	product.Id = id.String()
 	_, err := p.collection.InsertOne(context.TODO(), product)
@@ -42,7 +42,7 @@ func (p *ProductStore) Create(product *Product) (*Product, error) {
 	return product, nil
 }
 
-func (p *ProductStore) List() ([]Product, error) {
+func (p *productStore) List() ([]Product, error) {
 	filter := bson.D{}
 	products := []Product{}
 	cursor, err := p.collection.Find(context.TODO(), filter)

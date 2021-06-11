@@ -5,3 +5,8 @@ type Product struct {
 	Name  string  `json:"name"`
 	Price float64 `json:"price"`
 }
+
+type ProductStore interface {
+	Create(product *Product) (*Product, error)
+	List() ([]Product, error)
+}
