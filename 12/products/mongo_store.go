@@ -3,6 +3,7 @@ package products
 import (
 	"context"
 	"github.com/google/uuid"
+	"github.com/kirigaikabuto/Golang1300Lessons/12/config"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -16,8 +17,8 @@ type ProductStore struct {
 //метод который создает (сущность в которой хранятся элементы которые позволяют совершать какие либо операции в бд)
 //а так же подключается к базе данных
 
-func NewProductStore(url, databaseName, collectionName string) (*ProductStore, error) {
-	clientOptions := options.Client().ApplyURI(url)
+func NewProductStore(config config.MongoConfig) (*ProductStore, error) {
+	clientOptions := options.Client().ApplyURI(config.Url)
 	client, err := mongo.Connect(context.TODO(), clientOptions)
 	if err != nil {
 		return nil, err
@@ -26,8 +27,8 @@ func NewProductStore(url, databaseName, collectionName string) (*ProductStore, e
 	if err != nil {
 		return nil, err
 	}
-	db := client.Database(databaseName)
-	collection := db.Collection(collectionName)
+	db := client.Database(config.Database)
+	collection := db.Collection(config.Collection)
 	return &ProductStore{collection: collection}, nil
 }
 
@@ -41,7 +42,7 @@ func (p *ProductStore) Create(product *Product) (*Product, error) {
 	return product, nil
 }
 
-func (p *ProductStore) List() ([]Product, error){
+func (p *ProductStore) List() ([]Product, error) {
 	filter := bson.D{}
 	products := []Product{}
 	cursor, err := p.collection.Find(context.TODO(), filter)

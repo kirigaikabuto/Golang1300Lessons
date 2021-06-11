@@ -2,16 +2,17 @@ package main
 
 import (
 	"fmt"
+	"github.com/kirigaikabuto/Golang1300Lessons/12/config"
 	"github.com/kirigaikabuto/Golang1300Lessons/12/products"
 	"log"
 )
 
 func main() {
-	productStore, err := products.NewProductStore(
-		"mongodb://localhost:27017",
-		"lesson12",
-		"products",
-	)
+	productStore, err := products.NewProductStore(config.MongoConfig{
+		Url:        "mongodb://localhost:27017",
+		Database:   "lesson12",
+		Collection: "products",
+	})
 	if err != nil {
 		log.Fatal(err)
 		return
