@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/gorilla/mux"
+	"github.com/kirigaikabuto/Golang1300Lessons/15/mdw"
 	"github.com/kirigaikabuto/Golang1300Lessons/15/redis_connect"
 	"github.com/kirigaikabuto/Golang1300Lessons/15/users"
 	"log"
@@ -35,9 +36,11 @@ func main() {
 		return
 	}
 	usersHttpEndpoints := users.NewUsersHttpEndpoints(mongoUsersStore, redisConnect)
+	middleware := mdw.NewMiddleware(redisConnect)
 	r := mux.NewRouter()
 	r.Methods("POST").Path("/login").HandlerFunc(usersHttpEndpoints.Login())
 	r.Methods("POST").Path("/register").HandlerFunc(usersHttpEndpoints.Register())
+	r.Methods("GET").Path("/get-info").Handler(middleware.LoginMiddleware(http.HandlerFunc(usersHttpEndpoints.GetInfo())))
 	fmt.Println("Server is running on port " + PORT)
 	http.ListenAndServe(":"+PORT, r)
 }
