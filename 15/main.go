@@ -40,7 +40,7 @@ func main() {
 	r := mux.NewRouter()
 	r.Methods("POST").Path("/login").HandlerFunc(usersHttpEndpoints.Login())
 	r.Methods("POST").Path("/register").HandlerFunc(usersHttpEndpoints.Register())
-	r.Methods("GET").Path("/get-info").Handler(middleware.LoginMiddleware(http.HandlerFunc(usersHttpEndpoints.GetInfo())))
+	r.Methods("GET").Path("/get-info").HandlerFunc(middleware.LoginMiddleware(usersHttpEndpoints.GetInfo()))
 	fmt.Println("Server is running on port " + PORT)
 	http.ListenAndServe(":"+PORT, r)
 }

@@ -8,7 +8,7 @@ import (
 )
 
 type Middleware interface {
-	LoginMiddleware(fn http.Handler) http.Handler
+	LoginMiddleware(fn http.HandlerFunc) http.HandlerFunc
 }
 
 type middleware struct {
@@ -19,8 +19,8 @@ func NewMiddleware(r *redis_connect.RedisConnectStore) Middleware {
 	return &middleware{redisConnectionStore: r}
 }
 
-func (m *middleware) LoginMiddleware(fn http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+func (m *middleware) LoginMiddleware(fn http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
 		token := r.Header.Get("Authorization")
 		if token == "" {
 			respondJSON(w, http.StatusBadRequest, &ErrorMessage{
@@ -29,8 +29,7 @@ func (m *middleware) LoginMiddleware(fn http.Handler) http.Handler {
 			})
 			return
 		} else {
-			var userId string
-			dataJson, err := m.redisConnectionStore.Get(token)
+			userId, err := m.redisConnectionStore.Get(token)
 			if err != nil {
 				respondJSON(w, http.StatusBadRequest, &ErrorMessage{
 					Message: err.Error(),
@@ -38,7 +37,6 @@ func (m *middleware) LoginMiddleware(fn http.Handler) http.Handler {
 				})
 				return
 			}
-			err = json.Unmarshal([]byte(dataJson), &userId)
 			if err != nil && err.Error() == "redis: nil" {
 				respondJSON(w, http.StatusBadRequest, &ErrorMessage{
 					Message: "Your token is expired",
@@ -56,7 +54,7 @@ func (m *middleware) LoginMiddleware(fn http.Handler) http.Handler {
 			r = r.WithContext(ctx)
 		}
 		fn.ServeHTTP(w, r)
-	})
+	}
 }
 
 func respondJSON(w http.ResponseWriter, status int, payload interface{}) {
