@@ -19,9 +19,8 @@ func Get() {
 	fmt.Println(<-cha)
 	cha <- 4
 	fmt.Println("end of get")
+	global <- 5
 }
-
-
 
 func main() {
 	go Set()
