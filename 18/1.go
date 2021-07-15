@@ -1,11 +1,13 @@
 package main
 
 import (
+	"encoding/json"
+	"github.com/kirigaikabuto/Golang1300Lessons/18/users"
 	"github.com/streadway/amqp"
 )
 
 func main() {
-	//producer
+	//producer -> publisher
 	connection, err := amqp.Dial("amqp://guest:guest@localhost:5672/")
 	if err != nil {
 		panic(err)
@@ -17,7 +19,7 @@ func main() {
 		return
 	}
 	queue, err := channel.QueueDeclare(
-		"lesson18",
+		"users18",
 		false,
 		false,
 		false,
@@ -28,7 +30,12 @@ func main() {
 		panic(err)
 		return
 	}
-	message := "Hello my name is 132131112313"
+	user1 := &users.User{Id: "yerassyl", Name: "tleugazy"}
+	jsonData, err := json.Marshal(user1)
+	if err != nil {
+		panic(err)
+		return
+	}
 	err = channel.Publish(
 		"",
 		queue.Name,
@@ -36,7 +43,7 @@ func main() {
 		false,
 		amqp.Publishing{
 			ContentType: "text/plain",
-			Body:        []byte(message),
+			Body:        jsonData,
 		},
 	)
 	if err != nil {

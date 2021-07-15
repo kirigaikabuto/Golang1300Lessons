@@ -12,3 +12,22 @@ https://www.rabbitmq.com/tutorials/tutorial-one-go.html
 установка на mac os rabbitmq без docker
 
 https://www.rabbitmq.com/install-homebrew.html
+
+rpc remote procedure call
+
+server -> procedures, functions,
+
+call -> method
+
+users-lib[CRUD] amqp
+users-api
+
+products-lib[CRUD] amqp
+products-api
+
+orders-lib[CRUD] amqp
+orders-api
+
+start-api[login,register] http
+
+go get github.com/djumanoff/amqp
