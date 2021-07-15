@@ -26,6 +26,7 @@ func main() {
 		return
 	}
 	srv.Endpoint("lesson18.GetNumber", utils.AMQPGetNumber())
+	srv.Endpoint("lesson18.GetProducts", utils.AMQPGetProducts())
 	if err := srv.Start(); err != nil {
 		panic(err)
 		return
