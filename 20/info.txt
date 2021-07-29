@@ -25,3 +25,6 @@ roles: moderator
             ->permissions[create->products, create->orders]
        admin
             ->permissions[full-control->products, full-control-orders]
+
+
+http/amqp -> command -> service -> postgre/mongodb
