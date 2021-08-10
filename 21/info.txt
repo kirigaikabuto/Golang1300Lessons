@@ -28,3 +28,5 @@ roles: moderator
 
 
 http/amqp -> command -> service -> postgre/mongodb
+
+https://github.com/kirigaikabuto/setdata-acl
